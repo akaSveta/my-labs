@@ -1,0 +1,21 @@
+name -> location/name
+Rick Sanchez -> Citadel of Ricks
+Morty Smith -> Citadel of Ricks
+Summer Smith -> Earth (Replacement Dimension)
+Beth Smith -> Earth (Replacement Dimension)
+Jerry Smith -> Earth (Replacement Dimension)
+Abadango Cluster Princess -> Abadango
+Abradolf Lincler -> Testicle Monster Dimension
+Adjudicator Rick -> Citadel of Ricks
+Agency Director -> Earth (Replacement Dimension)
+Alan Rails -> Worldender's lair
+Albert Einstein -> Earth (Replacement Dimension)
+Alexander -> Anatomy Park
+Alien Googah -> Earth (Replacement Dimension)
+Alien Morty -> Citadel of Ricks
+Alien Rick -> Citadel of Ricks
+Amish Cyborg -> Earth (Replacement Dimension)
+Annie -> Anatomy Park
+Antenna Morty -> Citadel of Ricks
+Antenna Rick -> unknown
+Ants in my Eyes Johnson -> Interdimensional Cable
