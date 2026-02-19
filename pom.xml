@@ -11,8 +11,7 @@
     <!--  Это корневой pom, поэтому при сборке не нужно паковать jar - указываем "pom"  -->
     <packaging>pom</packaging>
     <modules>
-        <module>../../IdeaProjects/my-labs/lab-1</module>
-        <module>lab-1</module>
+        <module>lab1</module>
     </modules>
 
     <properties>
