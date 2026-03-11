@@ -1,0 +1,55 @@
+version: '3.8'
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+
+services:
+  postgres:
+    image: postgres:18
+    restart: no
+    networks:
+      - app-network
+    environment:
+      POSTGRES_DB: movie_db
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      # Важно! Указываем новое расположение данных
+      PGDATA: /var/lib/postgresql/18/docker
+    ports:
+      - "5432:5432"
+    command: ["postgres", "-c", "log_statement=all", "-c", "listen_addresses=*"]
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init-db.sql
+      # Монтируем том в родительскую папку /var/lib/postgresql
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d movie_db"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  movie_app:
+    build: .
+    container_name: movie_app
+    restart: no
+    networks:
+      - app-network
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./.env
+    deploy:
+      resources:
+        limits:
+          cpus: 4
+          memory: 4096M
+    tmpfs:
+      - /tmp
