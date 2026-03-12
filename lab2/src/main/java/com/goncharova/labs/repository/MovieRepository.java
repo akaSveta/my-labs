@@ -9,4 +9,6 @@ public interface MovieRepository {
     Optional<Movie> getById(int id);
     List<Movie> getAll();
     void save(Movie movie);
+    boolean update(Movie movie);      // возвращает true, если обновление успешно
+    void deleteById(int id);
 }

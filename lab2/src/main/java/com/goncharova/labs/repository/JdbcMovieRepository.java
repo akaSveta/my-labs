@@ -79,6 +79,40 @@ public class JdbcMovieRepository implements MovieRepository {
         }
     }
 
+    @Override
+    public boolean update(Movie movie) {
+        if (movie.getId() == null) {
+            return false;
+        }
+
+        String sql = "UPDATE " + table + " SET title = ?, rating = ? WHERE id = ?";
+        try (Connection conn = connectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, movie.getTitle());
+            ps.setDouble(2, movie.getRating());
+            ps.setInt(3, movie.getId());
+
+            int affectedRows = ps.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            throw new RepositoryException("Failed to update movie", e);
+        }
+    }
+
+    @Override
+    public void deleteById(int id) {
+        String sql = "DELETE FROM " + table + " WHERE id = ?";
+        try (Connection conn = connectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RepositoryException("Failed to delete movie", e);
+        }
+    }
+
     private void createTables() {
         String createSchema = "CREATE SCHEMA IF NOT EXISTS " + schema;
         String createTable = "CREATE TABLE IF NOT EXISTS " + table + """
