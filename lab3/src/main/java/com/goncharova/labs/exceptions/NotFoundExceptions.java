@@ -1,0 +1,21 @@
+package com.goncharova.labs.exceptions;
+
+public class NotFoundExceptions extends BaseException {
+    public static final int HTTP_CODE = 404;
+    public static final int CODE = 4000;
+
+    public NotFoundExceptions(String message) {
+        super(message);
+    }
+
+    @Override
+    public int getHttpCode() {
+        return HTTP_CODE;
+    }
+
+    @Override
+    public int getCode() {
+        return CODE;
+    }
+}
+
